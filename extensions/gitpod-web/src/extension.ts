@@ -407,6 +407,7 @@ export class GitpodWorkspaceTreeDataProvider implements vscode.TreeDataProvider<
 				port.tunnel = this.tunnels.get(portNumber);
 				const labelPrefix = currentStatus?.name ? `${currentStatus.name}: ` : '';
 				port.label = labelPrefix + portNumber;
+				console.error(JSON.stringify(port), '========port')
 				if (currentStatus?.description) {
 					port.tooltip = `${port.label} - ${currentStatus.description}`;
 				}
