@@ -43,6 +43,19 @@
 		Object.keys(self.webPackagePaths).map(function (key, index) {
 			self.webPackagePaths[key] = `${window.location.origin}/static/node_modules/${key}/${self.webPackagePaths[key]}`;
 		});
+
+		// Set up nls if the user is not using the default language (English)
+		const nlsConfig = {};
+		const locale = navigator.language;
+		if (!locale.startsWith('en')) {
+			nlsConfig['vs/nls'] = {
+				availableLanguages: {
+					'*': locale
+				},
+				baseUrl: `${window.location.origin}/static/`
+			};
+		}
+
 		require.config({
 			baseUrl: `${window.location.origin}/static/out`,
 			recordStats: true,
@@ -56,7 +69,8 @@
 				'@gitpod/local-app-api-grpcweb': `${window.location.origin}/static/node_modules/@gitpod/local-app-api-grpcweb/lib/localapp.js`,
 				'@improbable-eng/grpc-web': `${window.location.origin}/static/node_modules/@improbable-eng/grpc-web/dist/grpc-web-client.umd.js`,
 				'@zip.js/zipjs': `${window.location.origin}/static/node_modules/@zip.js/zip.js/dist/zip-no-worker-deflate.min.js`
-			}
+			},
+			...nlsConfig
 		});
 	</script>
 	<script>
