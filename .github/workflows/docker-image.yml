@@ -24,4 +24,4 @@ jobs:
       run: docker build . --file .gitpod.Dockerfile --tag localhost:3050/vscode:$(date +%s)
 
     - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USER}}/24241124/vscode
+      run: docker push ${{secrets.DOCKER_USER}}/vscode
