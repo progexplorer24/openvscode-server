@@ -21,7 +21,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker image
-      run: docker build . --file .gitpod.Dockerfile --tag isensei/vscode:$(date +%s)
+      run: docker build . --file .gitpod.Dockerfile --tag localhost:3050/vscode:$(date +%s)
 
     - name: Docker Push
       run: docker push ${{secrets.DOCKER_USER}}/24241124/vscode
